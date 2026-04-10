@@ -1,4 +1,3 @@
 
--UML
-#-Phân Tích Thiết Kế Hệ Thống
-#-CNPM
+#buổi 2 
+Cách sử dụng git
