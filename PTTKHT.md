@@ -2,7 +2,7 @@
 
 #### 1. Xác định Actors
 
-    1.1.**Tác nhân chính**:
+    1.1.**Tác nhân chính**
     Nhân viên :
 
 - Bao gồm các vai trò: Phục vụ  & Thu Ngân.
@@ -29,7 +29,7 @@
 
 #### 2. Các Use Case
 
-  2.1.**UC_1.0 - Đăng nhập hệ thống:** Nhân viên nhập mã PIN hoặc quét thẻ để truy cập vào màn hình POS. (Đây là Use Case nền tảng bắt buộc).
+  2.1.**UC_1.0 - Đăng nhập hệ thống:** Nhân viên nhập TK/MK hoặc quét thẻ để truy cập.
 
   2.2.**UC_1.1 - Quản lý sơ đồ bàn:** Nhân viên xem lưới sơ đồ bàn. Hệ thống hiển thị trực quan trạng thái bàn (Trống / Đang có khách) bằng màu sắc theo thời gian thực.
 
