@@ -1,4 +1,3 @@
-
-Trinh Van Dien
+*Trinh Van Dien*
 
 Vũ Đức Thắng
