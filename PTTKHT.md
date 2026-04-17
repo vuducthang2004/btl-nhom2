@@ -1,6 +1,6 @@
 ## Phân tích thiết kế hệ thống
 1.1.1 Mô tả tổng quan hệ thống
-Phần mềm quản lý thư viện sẽ thực hiện các chức năng chính sau: 
+Phần mềm quản lý quán cafe sẽ thực hiện các chức năng chính sau: 
 •	Quản lý người dùng: Hỗ trợ đăng ký, đăng nhập và quản lý tài khoản khách hàng, lưu trữ thông tin cá nhân, lịch sử đặt hàng và trạng thái tài khoản, phân quyền cho nhân viên quản lý hệ thống. 
 •	Quản lý đơn hàng: Theo dõi toàn bộ quá trình đặt hàng, từ khi khách hàng chọn món đến khi đơn hàng được hoàn tất, cập nhật trạng thái đơn hàng (đang xử lý, đã hoàn thành, đang giao hàng, đã nhận hàng), lưu trữ lịch sử giao dịch để khách hàng dễ dàng tra cứu. 
 •	Quản lý menu: Cho phép chủ cửa hàng thêm, sửa, xóa và cập nhật thông tin đồ uống, hiển thị hình ảnh, mô tả, giá cả và tình trạng sản phẩm (còn hàng/hết hàng), hỗ trợ phân loại sản phẩm theo danh mục (cafe, trà, nước ép, đồ uống đặc biệt. 
