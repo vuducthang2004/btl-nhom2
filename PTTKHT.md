@@ -24,7 +24,7 @@
   * Tự động trừ nguyên liệu khi phát sinh order
   * Cập nhật số lượng tồn kho theo thời gian thực
 
-->> Các actors đều phải đăng nhập hệ thống trước khi sử dụng và có thể có phân quyền khác nhau trên hệ thống.	
+->> Các actors đều phải đăng nhập hệ thống trước khi sử dụng và có thể có phân quyền khác nhau trên hệ thống.		
 
 #### 2. Các Use Case
 
