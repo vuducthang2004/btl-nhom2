@@ -9,7 +9,7 @@
 + Cập nhật trạng thái: Đánh dấu món đã hoàn thành để nhân viên mang ra cho khách
 + Thông báo hết món: Thông báo các món đã hết để nhân viên không chọn nhầm 
 
-### 3. Nhóm chức năng cho Quản lý & Chủ cửa hàng 
+### 3. Nhóm chức năng cho Chủ cửa hàng 
 + Quản lý menu: Thêm mới, thay đổi giá, topping đi kèm
 + Quản lý Kho: định lượng nguyên liệu từng món, hệ thống tự động trừ kho khi bán hàng
 + Báo Cáo Thống Kê: doanh thu theo ngày/tháng/năm
