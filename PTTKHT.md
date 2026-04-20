@@ -111,3 +111,11 @@
   3.2/**Quan hệ Tùy chọn (`<<extend>>`):**
 * Use Case **Thêm ghi chú món (Ít đá, nhiều sữa)** `<<extend>>`  **UC_1.2 (Tạo Order)** . (Chỉ thực hiện khi khách có yêu cầu đặc biệt).
 * Use Case **Áp dụng mã khuyến mãi** `<<extend>>`  **UC_1.3 (Thanh toán)** .
+# C Các biểu đồ PTTKHT
+1. Biểu đồ Class
+![](image/PTTKHT/Screenshot%202026-04-20%20135100.png)
+2. Biểu đồ hoạt động
+* Biểu đồ hoạt động Đăng Nhập
+![](image/PTTKHT/Screenshot%202026-04-20%20140212.png)
+* Biểu đồ hoạt đông nhân viên order món 
+![](image/PTTKHT/Screenshot%202026-04-20%20141703.png)
