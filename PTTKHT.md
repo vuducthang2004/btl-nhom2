@@ -2,7 +2,9 @@
 
 #### 1. Xác định Actors
 
-    1.1.**Tác nhân chính:** Nhân viên :
+    1.1.**Tác nhân chính:** 
+
+    Nhân viên :
 
 - Bao gồm các vai trò: Phục vụ  & Thu Ngân.
 - Sử dụng chung hệ thống POS với cùng giao diện để tối ưu thao tác.
