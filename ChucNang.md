@@ -3,7 +3,7 @@
 + Quản lý sơ đồ bàn: hiển thị trạng thái bàn theo thời gian thực
 + Order & gọi món: Chọn món nhanh qua màn hình cảm ứng tự động chuyển đơn hàng xuống khu vực pha chế
 + Thanh toán: tính tổng hóa đơn, hỗ trợ đa dạng phương thức(tiền mặt, chuyển khoản, ví điện tử)
-<!-- + Gộp bàn/ tách bàn: hỗ trợ khi khách đi theo nhóm và muốn thanh toán riêng hoặc muốn chuyển bàn -->
++ Gộp bàn/ tách bàn: hỗ trợ khi khách đi theo nhóm và muốn thanh toán riêng hoặc muốn chuyển bàn 
 
 ### 2. Nhóm chức năng cho Nhân viên pha chế(Barista)
 + Đăng nhập
