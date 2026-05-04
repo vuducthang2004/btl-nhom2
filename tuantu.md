@@ -19,10 +19,7 @@ Quản lý sơ đồ bàn:
 ![]()![1776943873737](image/tuantu/1776943873737.png)
 
 Thông báo hết món:
-
-![1776943890767](image/tuantu/1776943890767.png)
-
-![]()
+![]()![1776943890767](image/tuantu/1776943890767.png)
 
 Tiếp nhận và trạng thái :
 
@@ -32,9 +29,9 @@ Quản lý menu:
 
     +Thêm món mới:
 
-    ![1776943908325](image/tuantu/1776943908325.png)
+![]()[1776943908325](image/tuantu/1776943908325.png)
 
-![]()
+
 
 +Sửa:
 
@@ -42,9 +39,9 @@ Quản lý menu:
 
     +Ngừng kinh doanh món(xóa):
 
-    ![1776943928137](image/tuantu/1776943928137.png)
+![]()[1776943928137](image/tuantu/1776943928137.png)
 
-![]()
+
 
 Quản lý kho:
 
@@ -58,9 +55,9 @@ Quản lý nhân sự:
 
     +Thêm tknv:
 
-    ![1776943957020](image/tuantu/1776943957020.png)
+![]()[1776943957020](image/tuantu/1776943957020.png)
 
-![]()
+
 
     +Sửa tknv:
 
@@ -68,9 +65,9 @@ Quản lý nhân sự:
 
     +Xóa tknv:
 
-![1776943974122](image/tuantu/1776943974122.png)
+![]()![1776943974122](image/tuantu/1776943974122.png)
 
-![]()
+
 
 Quản lý lịch làm việc:
 
