@@ -4,45 +4,61 @@ import './OrderReception.css';
 
 const OrderReception = () => {
   const [orders, setOrders] = useState([
-    { id: "ORD-001", table: "Bàn 5", time: "10:15", status: "pending", items: [{ id: 1, name: "Cà phê Đen", qty: 2, note: "" }] },
-    { id: "ORD-002", table: "Bàn 12", time: "10:18", status: "cooking", items: [{ id: 3, name: "Trà Đào", qty: 3, note: "Ít đá" }] }
+    { id: 1, table: "Bàn 3", status: "pending", createdAt: Date.now() - 600000, items: [{id: 101, name: "Latte", qty: 1}] }
   ]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [menu, setMenu] = useState([{id: 1, name: "Cà phê", stock: true}, {id: 2, name: "Trà đào", stock: true}]);
 
-  const handleStatusChange = (orderId, newStatus) => {
-    setOrders(orders.map(order => order.id === orderId ? { ...order, status: newStatus } : order));
+  const handleStatusChange = (id, newStatus) => {
+    setOrders(orders.map(o => o.id === id ? {...o, status: newStatus} : o));
   };
 
-  const pendingOrders = orders.filter(o => o.status === 'pending');
-  const cookingOrders = orders.filter(o => o.status === 'cooking');
-  const doneOrders = orders.filter(o => o.status === 'done');
+  const playSound = () => {
+    new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3').play();
+  };
 
   return (
     <div className="kds-container">
       <div className="kds-header">
-        <h1>Màn hình Pha chế (KDS)</h1>
+        <h1>Bếp & Pha Chế</h1>
+        <div>
+          <button onClick={() => setIsModalOpen(true)} style={{marginRight: '10px'}}>🚫 Báo hết món</button>
+          <button onClick={() => { setOrders([...orders, {id: Date.now(), table: "Mới", status: "pending", createdAt: Date.now(), items: [{id: 99, name: "Nước cam", qty: 1}]}]); playSound(); }}>
+            🔔 Giả lập đơn mới
+          </button>
+        </div>
       </div>
+
       <div className="kanban-board">
-        <div className="kanban-column">
-          <div className="column-title">1. CHỜ PHA CHẾ</div>
-          <div className="column-content">
-            {pendingOrders.map(order => <OrderCard key={order.id} order={order} onStatusChange={handleStatusChange} />)}
+        {['pending', 'cooking', 'done'].map(status => (
+          <div className="kanban-column" key={status}>
+            <div className="column-title">{status === 'pending' ? 'Chờ làm' : status === 'cooking' ? 'Đang làm' : 'Đã xong'}</div>
+            <div className="column-content">
+              {orders.filter(o => o.status === status).map(o => (
+                <OrderCard key={o.id} order={o} onStatusChange={handleStatusChange} />
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="kanban-column">
-          <div className="column-title">2. ĐANG THỰC HIỆN</div>
-          <div className="column-content">
-            {cookingOrders.map(order => <OrderCard key={order.id} order={order} onStatusChange={handleStatusChange} />)}
-          </div>
-        </div>
-        <div className="kanban-column">
-          <div className="column-title">3. ĐÃ XONG</div>
-          <div className="column-content">
-            {doneOrders.map(order => <OrderCard key={order.id} order={order} onStatusChange={handleStatusChange} />)}
-          </div>
-        </div>
+        ))}
       </div>
+
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Danh sách món</h3>
+            {menu.map(m => (
+              <div key={m.id} className={`menu-list-item ${!m.stock ? 'sold-out' : ''}`}>
+                {m.name}
+                <button onClick={() => setMenu(menu.map(i => i.id === m.id ? {...i, stock: !i.stock} : i))}>
+                  {m.stock ? 'Báo hết' : 'Mở lại'}
+                </button>
+              </div>
+            ))}
+            <button onClick={() => setIsModalOpen(false)} style={{marginTop: '20px', width: '100%'}}>Đóng</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
-
 export default OrderReception;
