@@ -7,7 +7,12 @@ const OrderReception = () => {
     { id: 1, table: "Bàn 3", status: "pending", createdAt: Date.now() - 600000, items: [{id: 101, name: "Latte", qty: 1}] }
   ]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [menu, setMenu] = useState([{id: 1, name: "Cà phê", stock: true}, {id: 2, name: "Trà đào", stock: true}]);
+  const [menu, setMenu] = useState([{id: 1, name: "Cà phê", stock: true},
+                                   {id: 2, name: "Trà đào", stock: true},
+                                   {id: 3, name: "Bạc xỉu", stock: true},
+                                   {id: 4, name: "Nước cam", stock: true},
+                                   {id: 5, name: "Sinh tố bơ", stock: true},
+                                   {id: 6, name: "Trà sữa", stock: true}]);
 
   const handleStatusChange = (id, newStatus) => {
     setOrders(orders.map(o => o.id === id ? {...o, status: newStatus} : o));
@@ -22,9 +27,9 @@ const OrderReception = () => {
       <div className="kds-header">
         <h1>Bếp & Pha Chế</h1>
         <div>
-          <button onClick={() => setIsModalOpen(true)} style={{marginRight: '10px'}}>🚫 Báo hết món</button>
+          <button onClick={() => setIsModalOpen(true)} style={{marginRight: '10px'}}> Báo hết món</button>
           <button onClick={() => { setOrders([...orders, {id: Date.now(), table: "Mới", status: "pending", createdAt: Date.now(), items: [{id: 99, name: "Nước cam", qty: 1}]}]); playSound(); }}>
-            🔔 Giả lập đơn mới
+             Giả lập đơn mới
           </button>
         </div>
       </div>
