@@ -6,7 +6,7 @@ const OrderCard = ({ order, onStatusChange }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setElapsed(Math.floor((Date.now() - order.createdAt) / 60000));
-    }, 10000); // Cập nhật mỗi 10 giây
+    }, 10000);
     return () => clearInterval(timer);
   }, [order.createdAt]);
 

@@ -9,6 +9,7 @@ const InventoryManager = () => {
   const [qty, setQty] = useState("");
 
   const addStock = () => {
+    if(!name || !qty) return alert("Nhập đủ thông tin!");
     setStock([...stock, { id: Date.now(), name, qty: Number(qty)}]);
     setName(""); setQty("");
   };
