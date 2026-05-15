@@ -19,5 +19,4 @@
 danh sách món bán chạy, báo cáo tồn kho, cảnh báo nguyên liệu sắp hết
 + Quản lý nhân sự : thêm sửa xóa tài khoản nhân viên
 + Quản lý lịch làm việc của nhân viên
-+ Cấu hình hệ thống: thiết lập thông tin quán
 + Phân quyền
