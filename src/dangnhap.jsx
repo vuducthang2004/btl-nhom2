@@ -15,7 +15,7 @@ const DangNhap = () => {
     return (
         <div style={styles.container}>
             <form onSubmit={handleLogin} style={styles.form}>
-                <h2 style={{ textAlign: 'center', color: '#4b3832', marginBottom: '25px' }}>COFFEE POS</h2>
+                <h2 style={{ textAlign: 'center', color: '#4b3832', marginBottom: '25px' }}>COFFEE SHOP</h2>
                 
                 <input 
                     type="text" 

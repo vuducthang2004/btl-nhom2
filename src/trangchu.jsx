@@ -1,32 +1,41 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const TrangChu = () => {
-    const user = JSON.parse(localStorage.getItem('user')) || { name: 'Khách', role: 'waiter' };
+    const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem('user')) || { username: 'admin_ha', role: 'owner' };
 
     const functions = [
         { id: 1, title: 'Sơ đồ bàn', icon: '🪑', path: '/tables', roles: ['waiter', 'owner'] },
-        { id: 2, title: 'Thanh toán', icon: '💳', path: '/payment', roles: ['waiter', 'owner'] },
-        { id: 3, title: 'Pha chế', icon: '☕', path: '/kitchen', roles: ['barista', 'owner'] },
-        { id: 4, title: 'Quản lý kho', icon: '📦', path: '/inventory', roles: ['owner'] },
-        { id: 5, title: 'Nhân sự', icon: '👥', path: '/admin', roles: ['owner'] },
-        { id: 6, title: 'Báo cáo', icon: '📊', path: '/reports', roles: ['owner'] },
+        { id: 2, title: 'Quản lý kho', icon: '📦', path: '/kho', roles: ['owner'] },
+        { id: 3, title: 'Nhân sự', icon: '👥', path: '/nhansu', roles: ['owner'] }, 
+        { id: 4, title: 'Báo cáo', icon: '📊', path: '/baocao', roles: ['owner'] },
+        { id: 5, title: 'Thực đơn', icon: '📋', path: '/menu', roles: ['owner'] }
     ];
 
     const filteredFunctions = functions.filter(f => f.roles.includes(user.role));
+
+    const handleLogout = () => {
+        const confirmExit = window.confirm("Bạn muốn đăng xuất?");
+        if (confirmExit) {
+            localStorage.removeItem('user');
+            navigate('/');
+        }
+    };
 
     return (
         <div style={styles.container}>
             <header style={styles.header}>
                 <div style={styles.brandArea}>
-                    <h1 style={styles.title}>COFFEE MANAGEMENT</h1>
-                    <p style={styles.welcomeText}>Xin chào, <strong>{user.name}</strong></p>
+                    <h1 style={styles.title}>COFFEE SHOP</h1>
+                    <p style={styles.welcomeText}>Xin chào, <strong>{user.username}</strong></p>
                 </div>
-                <button style={styles.logoutBtn} onClick={() => window.location.href = '/'}>Đăng xuất</button>
+                <button style={styles.logoutBtn} onClick={handleLogout}>Đăng xuất</button>
             </header>
 
             <div style={styles.grid}>
                 {filteredFunctions.map(f => (
-                    <div key={f.id} style={styles.card} onClick={() => window.location.href = f.path}>
+                    <div key={f.id} style={styles.card} onClick={() => navigate(f.path)}>
                         <div style={styles.icon}>{f.icon}</div>
                         <div style={styles.cardTitle}>{f.title}</div>
                     </div>
@@ -35,7 +44,6 @@ const TrangChu = () => {
         </div>
     );
 };
-
 const styles = {
     container: { padding: '40px', backgroundColor: '#f8f9fa', minHeight: '100vh', fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" },
     header: { 
