@@ -66,10 +66,12 @@ const MenuManager = () => {
 };
 
 const styles = {
-    container: { backgroundColor: '#f5f5f5', minHeight: '100vh', fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" },
-    header: { backgroundColor: '#4b3832', padding: '20px 40px', display: 'flex', alignItems: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' },
-    backBtn: { backgroundColor: 'transparent', color: '#fff', border: '1px solid #fff', padding: '8px 15px', borderRadius: '5px', cursor: 'pointer', marginRight: '20px', fontWeight: 'bold', transition: '0.2s' },
-    title: { color: '#fff', margin: 0, fontSize: '24px' },
+container: { backgroundColor: '#f5f5f5', minHeight: '100vh', fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" },
+    header: { position: 'relative', backgroundColor: '#4b3832', padding: '20px 40px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' },  
+    backBtn: { position: 'absolute', left: '40px', backgroundColor: 'transparent', color: '#fff', border: '1px solid #fff', padding: '8px 15px', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold', transition: '0.2s' },
+    
+    title: { color: '#fff', margin: 0, fontSize: '24px', textAlign: 'center' },
+    
     content: { padding: '30px 40px', maxWidth: '1200px', margin: '0 auto' },
     card: { backgroundColor: '#fff', padding: '25px', borderRadius: '10px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', marginBottom: '30px' },
     cardTitle: { color: '#4b3832', marginTop: 0, borderBottom: '2px solid #eee', paddingBottom: '10px', marginBottom: '20px' },

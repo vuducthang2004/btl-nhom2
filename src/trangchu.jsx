@@ -1,16 +1,22 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const TrangChu = () => {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user')) || { username: 'admin_ha', role: 'owner' };
 
     const functions = [
         { id: 1, title: 'Sơ đồ bàn', icon: '🪑', path: '/tables', roles: ['waiter', 'owner'] },
+
         { id: 2, title: 'Quản lý kho', icon: '📦', path: '/kho', roles: ['owner'] },
         { id: 3, title: 'Nhân sự', icon: '👥', path: '/nhansu', roles: ['owner'] }, 
         { id: 4, title: 'Báo cáo', icon: '📊', path: '/baocao', roles: ['owner'] },
-        { id: 5, title: 'Thực đơn', icon: '📋', path: '/menu', roles: ['owner'] }
+        { id: 5, title: 'Thực đơn', icon: '📋', path: '/menu', roles: ['owner'] },
+        { id: 6, title: 'Lịch làm việc', icon: '📅', path: '/lichlamviec', roles: ['owner'] },
+
+        { id: 7, title: 'Pha chế', icon: '☕', path: '/phache', roles: ['barista'] },
+        { id: 8, title: 'Cập nhật món', icon: '🚫', path: '/capnhatmon', roles: ['barista'] },
     ];
 
     const filteredFunctions = functions.filter(f => f.roles.includes(user.role));
