@@ -7,8 +7,6 @@ const TrangChu = () => {
     const user = JSON.parse(localStorage.getItem('user')) || { username: 'admin_ha', role: 'owner' };
 
     const functions = [
-        { id: 1, title: 'Sơ đồ bàn', icon: '🪑', path: '/tables', roles: ['waiter', 'owner'] },
-
         { id: 2, title: 'Quản lý kho', icon: '📦', path: '/kho', roles: ['owner'] },
         { id: 3, title: 'Nhân sự', icon: '👥', path: '/nhansu', roles: ['owner'] }, 
         { id: 4, title: 'Báo cáo', icon: '📊', path: '/baocao', roles: ['owner'] },

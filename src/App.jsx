@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DangNhap from './dangnhap';
 import TrangChu from './trangchu';
 import QuanLyNhanSu from './quanlynhansu';
-import SoDoBan from './sodoban';
 
 import OrderReception from './OrderReception'; 
 import InventoryManager from './InventoryManager';
@@ -20,7 +19,6 @@ function App() {
                 <Route path="/" element={<DangNhap />} />
                 <Route path="/home" element={<TrangChu />} />
                 <Route path="/nhansu" element={<QuanLyNhanSu />} />
-                <Route path="/tables" element={<SoDoBan />} />
 
                 <Route path="/phache" element={<OrderReception />} />
                 <Route path="/kho" element={<InventoryManager />} />
