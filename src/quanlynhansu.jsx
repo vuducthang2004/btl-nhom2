@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 
 const QuanLyNhanSu = () => {
+    const navigate = useNavigate(); 
+
     const [users, setUsers] = useState([
         { id: 1, username: 'admin_ha', fullName: 'Trần Minh Hà', role: 'owner' },
         { id: 2, username: 'nv_phucvu1', fullName: 'Nguyễn Văn A', role: 'waiter' },
@@ -19,25 +22,25 @@ const QuanLyNhanSu = () => {
         setNewUser({ username: '', password: '', fullName: '', role: 'waiter' });
     };
 
+    const handleDeleteUser = (idXoa) => {
+        const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa tài khoản này?");
+        if (confirmDelete) {
+            setUsers(users.filter(user => user.id !== idXoa));
+        }
+    };
+
     return (
         <div style={styles.container}>
-            <div style={styles.sidebar}>
-                <h3 style={styles.logo}>Quản lý quán cafe</h3>
-                <ul style={styles.menu}>
-                    <li style={styles.menuItemActive}>Quản lý nhân sự</li>
-                </ul>
-                <button 
-                    style={styles.backBtn} 
-                    onClick={() => window.location.href = '/home'}
-                >
-                    ← Quay lại trang chủ
+            <div style={styles.header}>
+                <button onClick={() => navigate('/home')} style={styles.backBtn}>
+                    ← Quay lại Trang chủ
                 </button>
+                <h2 style={styles.title}>👥 QUẢN LÝ NHÂN SỰ</h2>
             </div>
-            
+
             <div style={styles.content}>
-                <h2 style={styles.headerTitle}>Cấp tài khoản nhân viên</h2>
-                
                 <div style={styles.formContainer}>
+                    <h3 style={{ marginTop: 0, color: '#4b3832', marginBottom: '15px' }}>Cấp tài khoản mới</h3>
                     <form onSubmit={handleAddUser} style={styles.form}>
                         <input 
                             type="text" 
@@ -68,11 +71,11 @@ const QuanLyNhanSu = () => {
                             value={newUser.role}
                             onChange={(e) => setNewUser({...newUser, role: e.target.value})}
                         >
-                            <option value="waiter">Nhân viên phục vụ</option>
-                            <option value="barista">Nhân viên pha chế</option>
+                            <option value="waiter">Phục vụ</option>
+                            <option value="barista">Pha chế</option>
                             <option value="owner">Chủ cửa hàng</option>
                         </select>
-                        <button type="submit" style={styles.button}>CẤP TÀI KHOẢN</button>
+                        <button type="submit" style={styles.button}>+ CẤP TÀI KHOẢN</button>
                     </form>
                 </div>
 
@@ -91,13 +94,18 @@ const QuanLyNhanSu = () => {
                         {users.map((user) => (
                             <tr key={user.id}>
                                 <td style={styles.td}>{user.id}</td>
-                                <td style={styles.td}>{user.fullName}</td>
+                                <td style={{...styles.td, fontWeight: 'bold'}}>{user.fullName}</td>
                                 <td style={styles.td}>{user.username}</td>
-                                <td style={styles.td}>
+                                <td style={{...styles.td, fontWeight: 'bold', color: user.role === 'owner' ? '#e74c3c' : '#2980b9'}}>
                                     {user.role === 'owner' ? 'Chủ cửa hàng' : user.role === 'barista' ? 'Pha chế' : 'Phục vụ'}
                                 </td>
                                 <td style={styles.td}>
-                                    <button style={styles.deleteButton}>Xóa</button>
+                                    <button 
+                                        style={styles.deleteButton} 
+                                        onClick={() => handleDeleteUser(user.id)}
+                                    >
+                                        Xóa
+                                    </button>
                                 </td>
                             </tr>
                         ))}
@@ -109,22 +117,19 @@ const QuanLyNhanSu = () => {
 };
 
 const styles = {
-    container: { display: 'flex', height: '100vh', backgroundColor: '#f5f5f5', fontFamily: 'Arial, sans-serif' },
-    sidebar: { width: '250px', backgroundColor: '#4b3832', color: '#fff', padding: '20px', display: 'flex', flexDirection: 'column' },
-    logo: { textAlign: 'center', borderBottom: '1px solid #6b554e', paddingBottom: '20px', marginBottom: '20px' },
-    menu: { listStyle: 'none', padding: 0, margin: 0, flexGrow: 1 },
-    menuItemActive: { padding: '15px', backgroundColor: '#6b554e', fontWeight: 'bold', borderRadius: '5px' },
-    backBtn: { padding: '12px', backgroundColor: 'transparent', color: '#fff', border: '1px solid #6b554e', borderRadius: '5px', cursor: 'pointer', marginTop: 'auto' },
-    content: { flex: 1, padding: '40px', overflowY: 'auto' },
-    headerTitle: { color: '#4b3832', borderBottom: '2px solid #ddd', paddingBottom: '10px', marginBottom: '20px' },
-    formContainer: { backgroundColor: '#fff', padding: '25px', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' },
+    container: { backgroundColor: '#f5f5f5', minHeight: '100vh', fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" },
+    header: { backgroundColor: '#4b3832', padding: '20px 40px', display: 'flex', alignItems: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' },
+    backBtn: { backgroundColor: 'transparent', color: '#fff', border: '1px solid #fff', padding: '8px 15px', borderRadius: '5px', cursor: 'pointer', marginRight: '20px', fontWeight: 'bold', transition: '0.2s' },
+    title: { color: '#fff', margin: 0, fontSize: '24px' },
+    content: { padding: '30px 40px', maxWidth: '1200px', margin: '0 auto' },
+    formContainer: { backgroundColor: '#fff', padding: '25px', borderRadius: '10px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' },
     form: { display: 'flex', gap: '15px', alignItems: 'center', flexWrap: 'wrap' },
-    input: { padding: '12px', borderRadius: '5px', border: '1px solid #ddd', flex: 1, minWidth: '150px' },
-    button: { padding: '12px 20px', backgroundColor: '#4CAF50', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' },
-    table: { width: '100%', borderCollapse: 'collapse', backgroundColor: '#fff', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', borderRadius: '8px', overflow: 'hidden', marginTop: '10px' },
-    th: { backgroundColor: '#4b3832', color: '#fff', padding: '15px', textAlign: 'left' },
-    td: { padding: '15px', borderBottom: '1px solid #ddd' },
-    deleteButton: { padding: '8px 15px', backgroundColor: '#e74c3c', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }
+    input: { padding: '12px', borderRadius: '5px', border: '1px solid #ccc', flex: 1, minWidth: '150px', fontSize: '15px' },
+    button: { padding: '12px 20px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold', fontSize: '15px' },
+    table: { width: '100%', borderCollapse: 'collapse', backgroundColor: '#fff', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', borderRadius: '10px', overflow: 'hidden' },
+    th: { backgroundColor: '#f8f9fa', color: '#333', padding: '15px', textAlign: 'left', borderBottom: '2px solid #ddd' },
+    td: { padding: '15px', borderBottom: '1px solid #eee' },
+    deleteButton: { padding: '8px 15px', backgroundColor: '#e74c3c', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }
 };
 
 export default QuanLyNhanSu;

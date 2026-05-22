@@ -1,0 +1,122 @@
+/* 1. NỀN & KHUNG TỔNG THỂ */
+.kds-container { 
+  padding: 20px; 
+
+  background-color: #f4f7f6; 
+  height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  box-sizing: border-box; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.kds-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 25px; 
+  background: white; 
+  padding: 15px 25px; 
+  border-radius: 12px; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+}
+.kds-header h1 {
+    color: #172b4d;
+}
+/* BẢNG KANBAN & CỘT */
+.kanban-board { display: flex; gap: 20px; flex-grow: 1; overflow: hidden; }
+
+.kanban-column { 
+  flex: 1; 
+  background-color: #ebecf0; 
+  border-radius: 12px; 
+  display: flex; 
+  flex-direction: column; 
+  padding: 15px; 
+}
+
+.column-title { 
+  text-align: center; 
+  font-weight: 700; 
+  text-transform: uppercase; 
+  margin-bottom: 15px; 
+  padding-bottom: 10px; 
+  color: #5e6c84; 
+  letter-spacing: 0.5px;
+}
+
+.column-content { 
+  flex-grow: 1; 
+  overflow-y: auto; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px; 
+  padding-right: 5px; 
+}
+
+/* THẺ ORDER */
+.order-card { 
+  background: white; 
+  border-radius: 10px; 
+  border-left: 6px solid transparent; 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08); 
+  display: flex; 
+  flex-direction: column; 
+  
+  transition: transform 0.2s ease, box-shadow 0.2s ease; 
+}
+
+
+.order-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+.card-pending { border-left-color: #ff5630; } 
+.card-cooking { border-left-color: #0052cc; } 
+.card-done { border-left-color: #36b37e; opacity: 0.6; } 
+
+.card-header { 
+  padding: 12px 15px; 
+  display: flex; 
+  justify-content: space-between; 
+  border-bottom: 1px dashed #eee; 
+  font-weight: bold; 
+  font-size: 16px; 
+}
+
+.order-items { padding: 10px 15px; }
+.item-row { padding: 6px 0; font-size: 15px; color: #333; }
+.item-qty { font-weight: bold; color: #ff5630; display: inline-block; width: 25px; }
+.item-note { display: block; font-size: 13px; color: #888; margin-left: 25px; font-style: italic; background: #fff8f6; padding: 4px; border-radius: 4px; margin-top: 4px; }
+
+/*NÚT BẤM */
+.btn-status { 
+  width: 100%; 
+  padding: 12px; 
+  border: none; 
+  border-radius: 6px; 
+  font-weight: bold; 
+  cursor: pointer; 
+  color: white; 
+  transition: all 0.2s; 
+  margin-top: auto;
+}
+.btn-status:hover { filter: brightness(1.1); transform: scale(0.98); } 
+.btn-start { background-color: #0052cc; }
+.btn-finish { background-color: #36b37e; }
+
+/*THANH CUỘN (SCROLLBAR)*/
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c1c7d0; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #a5adba; }
+
+
+.time-warning { color: #dc3545; font-weight: bold; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.modal-content { background: white; width: 450px; border-radius: 12px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.menu-list-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
+.sold-out { background-color: #ffebe6; text-decoration: line-through; border-radius: 6px; } 
