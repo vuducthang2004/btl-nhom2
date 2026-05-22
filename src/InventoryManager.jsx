@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom';
 const InventoryManager = () => {
   const navigate = useNavigate();
   const [stock, setStock] = useState([
-    { id: 1, name: "Hạt Cà phê", qty: 5},
-    { id: 2, name: "Sữa đặc", qty: 10}
+    { id: 1, name: "Cam", qty: 5},
+    { id: 2, name: "Sữa đặc", qty: 10},
+    { id: 3, name: "Đường", qty: 20},
+    { id: 4, name: "Cà phê", qty: 15 },
+    { id: 5, name: "Trà xanh", qty: 8}
   ]);
   const [name, setName] = useState("");
   const [qty, setQty] = useState("");
