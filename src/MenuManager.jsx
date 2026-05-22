@@ -5,7 +5,9 @@ const MenuManager = () => {
   const navigate = useNavigate();
   const [items, setItems] = useState([
     { id: 1, name: "Cà phê Muối", price: 35000 },
-    { id: 2, name: "Trà Nhãn Cam Sả", price: 40000 }
+    { id: 2, name: "Trà Nhãn Cam Sả", price: 40000 },
+    { id: 3, name: "Bánh Mì Que", price: 25000 },
+    { id: 4, name: "Bánh Mì Bơ Tỏi", price: 30000 },
   ]);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
