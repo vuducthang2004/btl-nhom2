@@ -1,0 +1,47 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: coffee-shop-db
+    restart: unless-stopped
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root123}
+      MYSQL_DATABASE: ${DB_NAME:-coffee_shop}
+      MYSQL_USER: ${DB_USER:-coffee_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-coffee_pass}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    container_name: coffee-shop-api
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      PORT: 3000
+      NODE_ENV: development
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: ${DB_USER:-coffee_user}
+      DB_PASSWORD: ${DB_PASSWORD:-coffee_pass}
+      DB_NAME: ${DB_NAME:-coffee_shop}
+      JWT_SECRET: ${JWT_SECRET:-dev-jwt-secret-key-coffee-shop-2026}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-dev-jwt-refresh-secret-key-coffee-shop-2026}
+      JWT_ACCESS_EXPIRY: 15m
+      JWT_REFRESH_EXPIRY: 7d
+    volumes:
+      - ./src:/app/src
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql_data:
