@@ -3,6 +3,8 @@ FROM node:22-alpine
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@10.11.0 --activate
 
+ENV CI=true
+
 WORKDIR /app
 
 # Copy package files
