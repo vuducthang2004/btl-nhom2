@@ -1,16 +1,14 @@
 FROM node:22-alpine
 
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@10.11.0 --activate
-
-ENV CI=true
+# Install pnpm globally (avoid corepack version mismatch)
+RUN npm install -g pnpm@10
 
 WORKDIR /app
 
-# Copy package files
-COPY package.json pnpm-lock.yaml ./
+# Copy config + package files first (for layer caching)
+COPY .npmrc package.json pnpm-lock.yaml ./
 
-# Install dependencies as root
+# Install dependencies
 RUN pnpm install --frozen-lockfile --ignore-scripts
 
 # Copy source
@@ -24,4 +22,5 @@ USER node
 
 EXPOSE 3000
 
-CMD ["pnpm", "dev"]
+# Run nodemon directly — bypass pnpm script runner's deps check
+CMD ["./node_modules/.bin/nodemon"]
