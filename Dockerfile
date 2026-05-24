@@ -8,11 +8,14 @@ WORKDIR /app
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies
+# Install dependencies as root
 RUN pnpm install --frozen-lockfile --ignore-scripts
 
 # Copy source
 COPY . .
+
+# Change ownership to node user
+RUN chown -R node:node /app
 
 # Run as non-root user
 USER node
