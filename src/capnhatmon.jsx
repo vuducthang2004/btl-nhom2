@@ -1,27 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+const API_BASE_URL = 'http://localhost:3000/api/v1';
 
 const CapNhatMon = () => {
     const navigate = useNavigate();
-    const [menu, setMenu] = useState(() => {
-        const savedMenu = localStorage.getItem('menuQuayPhaChe');
-        if (savedMenu) return JSON.parse(savedMenu);
-        return [
-            {id: 1, name: "Cà phê", stock: true}, {id: 2, name: "Trà đào", stock: true},
-            {id: 3, name: "Bạc xỉu", stock: true}, {id: 4, name: "Nước cam", stock: true},
-            {id: 5, name: "Sinh tố bơ", stock: true}, {id: 6, name: "Trà sữa", stock: true}
-        ];
-    });
-    const toggleStock = (id) => {
-        setMenu(menu.map(item => item.id === id ? {...item, stock: !item.stock} : item));
+    const [menu, setMenu] = useState([]);
+    const getAuthHeader = () => {
+        const token = localStorage.getItem('accessToken');
+        return { Authorization: `Bearer ${token}` };
+    };
+    const fetchMenu = async () => {
+        try {
+            const response = await axios.get(`${API_BASE_URL}/menu/items`, {
+                headers: getAuthHeader()
+            });
+            if (response.data.success) {
+                setMenu(response.data.data);
+            }
+        } catch (error) {
+            console.error("Lỗi khi tải danh sách món:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchMenu();
+    }, []);
+
+    const toggleStock = async (id, currentAvailability) => {
+        setMenu(menu.map(item => item.id === id ? { ...item, is_available: !currentAvailability } : item));
+
+        try {
+            await axios.patch(`${API_BASE_URL}/menu/items/${id}/availability`, {}, {
+                headers: getAuthHeader()
+            });
+        } catch (error) {
+            console.error("Lỗi cập nhật món:", error);
+            alert("Lỗi khi cập nhật! Vui lòng kiểm tra lại quyền BARISTA hoặc kết nối mạng.");
+            fetchMenu();
+        }
     };
 
     return (
         <div style={styles.container}>
             <div style={styles.header}>
-                    <button onClick={() => navigate('/home')} style={styles.backBtn}>
-                        ← Quay lại Trang chủ
-                    </button>
+                <button onClick={() => navigate('/home')} style={styles.backBtn}>
+                    ← Quay lại Trang chủ
+                </button>
                 <h2 style={styles.title}>🚫 BÁO CÁO HẾT MÓN</h2>
             </div>
 
@@ -30,15 +56,15 @@ const CapNhatMon = () => {
                     <h3 style={styles.cardTitle}>Danh sách nguyên liệu / Đồ uống</h3>
                     <div style={styles.menuGrid}>
                         {menu.map(m => (
-                            <div key={m.id} style={{...styles.menuItem, opacity: m.stock ? 1 : 0.6}}>
-                                <strong style={{textDecoration: !m.stock ? 'line-through' : 'none', fontSize: '18px', color: '#333'}}>
+                            <div key={m.id} style={{ ...styles.menuItem, opacity: m.is_available ? 1 : 0.6 }}>
+                                <strong style={{ textDecoration: !m.is_available ? 'line-through' : 'none', fontSize: '18px', color: '#333' }}>
                                     {m.name}
                                 </strong>
                                 <button 
-                                    style={{...styles.stockBtn, backgroundColor: m.stock ? '#e74c3c' : '#27ae60'}}
-                                    onClick={() => toggleStock(m.id)}
+                                    style={{ ...styles.stockBtn, backgroundColor: m.is_available ? '#e74c3c' : '#27ae60' }}
+                                    onClick={() => toggleStock(m.id, m.is_available)}
                                 >
-                                    {m.stock ? 'Báo hết' : 'Mở lại'}
+                                    {m.is_available ? 'Báo hết' : 'Mở lại'}
                                 </button>
                             </div>
                         ))}

@@ -1,15 +1,38 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axiosClient from './api';
 
 const DangNhap = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('waiter');
+    const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        localStorage.setItem('user', JSON.stringify({ name: username, role: role }));
         
-        window.location.href = '/home';
+        try {
+            const response = await axiosClient.post('/auth/login', {
+                username: username,
+                password: password
+            });
+            if (response.data && response.data.success) {
+
+                localStorage.setItem('accessToken', response.data.data.accessToken);
+                
+                if (response.data.data.user) {
+                    localStorage.setItem('user', JSON.stringify(response.data.data.user));
+                }
+                
+                alert('Đăng nhập thành công!');
+
+                navigate('/home'); 
+            }
+        } catch (error) {
+            console.error("Lỗi đăng nhập:", error);
+           
+            const errorMessage = error.response?.data?.message || 'Sai tên đăng nhập hoặc mật khẩu!';
+            alert(errorMessage);
+        }
     };
 
     return (
@@ -34,12 +57,6 @@ const DangNhap = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-
-                <select style={styles.input} value={role} onChange={(e) => setRole(e.target.value)}>
-                    <option value="waiter">Nhân viên phục vụ</option>
-                    <option value="barista">Nhân viên pha chế</option>
-                    <option value="owner">Chủ cửa hàng</option>
-                </select>
 
                 <button type="submit" style={styles.button}>ĐĂNG NHẬP</button>
             </form>

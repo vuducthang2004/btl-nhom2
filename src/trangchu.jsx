@@ -3,92 +3,77 @@ import { useNavigate } from 'react-router-dom';
 
 const TrangChu = () => {
     const navigate = useNavigate();
-    const user = JSON.parse(localStorage.getItem('user')) || { username: 'admin_ha', role: 'owner' };
-
-    const functions = [
-        { id: 1, title: 'Order món', icon: '📝', path: '/order', roles: ['waiter', 'owner'] },
-        { id: 2, title: 'Quản lý kho', icon: '📦', path: '/kho', roles: ['owner'] },
-        { id: 3, title: 'Nhân sự', icon: '👥', path: '/nhansu', roles: ['owner'] }, 
-        { id: 4, title: 'Báo cáo', icon: '📊', path: '/baocao', roles: ['owner'] },
-        { id: 5, title: 'Thực đơn', icon: '📋', path: '/menu', roles: ['owner'] },
-        { id: 6, title: 'Lịch làm việc', icon: '📅', path: '/lichlamviec', roles: ['owner'] },
-
-        { id: 7, title: 'Pha chế', icon: '☕', path: '/phache', roles: ['barista'] },
-        { id: 8, title: 'Cập nhật món', icon: '🚫', path: '/capnhatmon', roles: ['barista'] },
-    ];
-
-
-    const filteredFunctions = functions.filter(f => f.roles.includes(user.role));
+    
+    const userStr = localStorage.getItem('user');
+    const user = userStr ? JSON.parse(userStr) : { name: 'barista1' };
 
     const handleLogout = () => {
-        const confirmExit = window.confirm("Bạn muốn đăng xuất?");
-        if (confirmExit) {
-            localStorage.removeItem('user');
-            navigate('/');
-        }
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('user');
+        navigate('/dangnhap');
     };
 
     return (
         <div style={styles.container}>
-            <header style={styles.header}>
-                <div style={styles.brandArea}>
+            <div style={styles.header}>
+                <div>
                     <h1 style={styles.title}>COFFEE SHOP</h1>
-                    <p style={styles.welcomeText}>Xin chào, <strong>{user.username}</strong></p>
+                    <p style={styles.subtitle}>Xin chào, <strong>{user.name || user.username}</strong></p>
                 </div>
-                <button style={styles.logoutBtn} onClick={handleLogout}>Đăng xuất</button>
-            </header>
+                <button onClick={handleLogout} style={styles.logoutBtn}>Đăng xuất</button>
+            </div>
 
-            <div style={styles.grid}>
-                {filteredFunctions.map(f => (
-                    <div key={f.id} style={styles.card} onClick={() => navigate(f.path)}>
-                        <div style={styles.icon}>{f.icon}</div>
-                        <div style={styles.cardTitle}>{f.title}</div>
+            <div style={styles.content}>
+                <h2 style={{ textAlign: 'center', color: '#4b3832', marginBottom: '30px' }}>
+                    CHỨC NĂNG PHA CHẾ
+                </h2>
+                
+                <div style={styles.menuGrid}>
+                    <div style={styles.card} onClick={() => navigate('/phache')}>
+                        <div style={styles.icon}>☕</div>
+                        <h3 style={styles.cardTitle}>Màn hình Bếp (KDS)</h3>
                     </div>
-                ))}
+                    <div style={styles.card} onClick={() => navigate('/capnhatmon')}>
+                        <div style={styles.icon}>🚫</div>
+                        <h3 style={styles.cardTitle}>Báo Hết Món</h3>
+                    </div>
+                </div>
             </div>
         </div>
     );
 };
+
 const styles = {
-    container: { padding: '40px', backgroundColor: '#f8f9fa', minHeight: '100vh', fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" },
+    container: { backgroundColor: '#e9ecef', minHeight: '100vh', fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" },
     header: { 
+        backgroundColor: '#fff', 
+        padding: '15px 40px', 
         display: 'flex', 
         justifyContent: 'space-between', 
-        alignItems: 'flex-start', 
-        marginBottom: '40px', 
-        borderBottom: '2px solid #4b3832', 
-        paddingBottom: '20px' 
+        alignItems: 'center', 
+        borderBottom: '2px solid #4b3832',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.05)'
     },
-    brandArea: { display: 'flex', flexDirection: 'column', gap: '5px' },
-    title: { margin: 0, color: '#4b3832', fontSize: '2.5rem', fontWeight: 'bold' },
-    welcomeText: { margin: 0, color: '#666', fontSize: '1.1rem' },
-    logoutBtn: { 
-        padding: '10px 25px', 
-        backgroundColor: '#e74c3c', 
-        color: '#fff', 
-        border: 'none', 
-        borderRadius: '5px', 
-        cursor: 'pointer',
-        fontWeight: 'bold',
-        marginTop: '10px'
-    },
-    grid: { 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', 
-        gap: '25px' 
-    },
+    title: { color: '#4b3832', margin: 0, fontSize: '28px', fontWeight: '900' },
+    subtitle: { color: '#7f8c8d', margin: '5px 0 0 0', fontSize: '16px' },
+    logoutBtn: { backgroundColor: '#e74c3c', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' },
+    
+    content: { padding: '50px 20px', maxWidth: '900px', margin: '0 auto' },
+    menuGrid: { display: 'flex', gap: '30px', justifyContent: 'center', flexWrap: 'wrap' },
+    
     card: { 
         backgroundColor: '#fff', 
-        padding: '40px 20px', 
+        width: '300px', 
+        padding: '30px 20px', 
         borderRadius: '15px', 
-        textAlign: 'center', 
-        cursor: 'pointer', 
-        boxShadow: '0 4px 12px rgba(0,0,0,0.08)', 
-        transition: 'transform 0.2s, boxShadow 0.2s',
-        border: '1px solid #eee'
+        textAlign: 'center',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+        cursor: 'pointer',
+        transition: 'transform 0.2s, box-shadow 0.2s',
     },
-    icon: { fontSize: '60px', marginBottom: '20px' },
-    cardTitle: { fontSize: '20px', fontWeight: 'bold', color: '#4b3832' }
+    icon: { fontSize: '50px', marginBottom: '15px' },
+    cardTitle: { color: '#2f3542', margin: '0 0 10px 0', fontSize: '20px' },
+    cardDesc: { color: '#7f8c8d', margin: 0, fontSize: '15px', lineHeight: '1.5' }
 };
 
 export default TrangChu;
