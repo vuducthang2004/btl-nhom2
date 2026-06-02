@@ -94,6 +94,6 @@ router.get('/:id', authenticate, validate({ params: orderIdParamSchema }), order
  *       200:
  *         description: Updated order
  */
-router.patch('/:id/status', authenticate, authorize(Role.BARISTA), validate({ params: orderIdParamSchema, body: updateOrderStatusSchema }), orderController.updateOrderStatus);
+router.patch('/:id/status', authenticate, authorize(Role.BARISTA, Role.CASHIER), validate({ params: orderIdParamSchema, body: updateOrderStatusSchema }), orderController.updateOrderStatus);
 
 export default router;

@@ -17,8 +17,8 @@ const DashboardPage = () => {
         const dashboardData = response.data.data || response.data;
         setData({
           todayRevenue: dashboardData.todayRevenue ?? dashboardData.today_revenue ?? 0,
-          totalOrders: dashboardData.totalOrders ?? dashboardData.total_orders ?? 0,
-          lowStockItems: dashboardData.lowStockItems ?? dashboardData.low_stock_items ?? 0,
+          totalOrders: dashboardData.todayOrders ?? dashboardData.totalOrders ?? dashboardData.total_orders ?? 0,
+          lowStockItems: dashboardData.lowStockCount ?? dashboardData.lowStockItems ?? dashboardData.low_stock_items ?? 0,
           completedOrders: dashboardData.completedOrders ?? dashboardData.completed_orders ?? 0
         });
       } catch (error) {
