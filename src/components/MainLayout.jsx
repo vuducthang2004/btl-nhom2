@@ -99,7 +99,7 @@ const MainLayout = () => {
           zIndex: 5
         }}>
           <div style={{ fontWeight: '600', color: 'var(--color-primary)' }}>
-            Xin chào, {user.username} <span className="text-muted" style={{ fontWeight: '400' }}>({user.role})</span>
+            Xin chào, {user.username} <span className="text-muted" style={{ fontWeight: '400' }}></span>
           </div>
           <Button variant="outline" onClick={handleLogout} style={{ padding: '8px 16px', fontSize: '14px' }}>
             Đăng xuất
