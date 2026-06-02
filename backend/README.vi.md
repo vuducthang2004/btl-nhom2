@@ -15,7 +15,7 @@ API RESTful toàn diện cho việc quản lý quán cà phê, được xây d�
 - [Biến Môi Trường](#-biến-môi-trường)
 - [Cơ Sở Dữ Liệu](#-cơ-sở-dữ-liệu)
 - [API Endpoints](#-api-endpoints)
-- [Xác Thực & Phân Quyền](#-xác-thực--phân-quyền)
+- [Xác Thực &amp; Phân Quyền](#-xác-thực--phân-quyền)
 - [Các Quyết Định Thiết Kế](#-các-quyết-định-thiết-kế)
 - [Cấu Trúc Dự Án](#-cấu-trúc-dự-án)
 - [Lệnh Scripts](#-lệnh-scripts)
@@ -27,6 +27,7 @@ API RESTful toàn diện cho việc quản lý quán cà phê, được xây d�
 ## ✨ Tính Năng
 
 ### Phase 1 — Vận Hành Cốt Lõi
+
 - **Xác thực** — Cặp JWT access/refresh token với theo dõi phiên trên DB
 - **Quản lý nhân viên** — CRUD với phân quyền theo vai trò (OWNER, CASHIER, BARISTA)
 - **Quản lý thực đơn** — Danh mục, món, topping với quan hệ nhiều-nhiều
@@ -35,6 +36,7 @@ API RESTful toàn diện cho việc quản lý quán cà phê, được xây d�
 - **Màn hình bếp** — Hàng đợi thời gian thực cho barista + endpoint hiển thị công khai
 
 ### Phase 2 — Quản Lý Kho Nguyên Liệu
+
 - **Theo dõi nguyên liệu** — Mức tồn kho với ngưỡng cảnh báo thấp tuỳ chỉnh
 - **Hệ thống công thức** — Yêu cầu nguyên liệu cho từng món và topping
 - **Tự động trừ kho khi thanh toán** — Trừ kho linh hoạt (không bao giờ chặn thanh toán)
@@ -42,6 +44,7 @@ API RESTful toàn diện cho việc quản lý quán cà phê, được xây d�
 - **Tự động mở khoá thông minh** — Chỉ mở lại khi TẤT CẢ nguyên liệu đều đủ
 
 ### Phase 3 — Báo Cáo & Phân Tích
+
 - **Dashboard** — Doanh thu hôm nay, số đơn, cảnh báo hết hàng, top bán chạy
 - **Báo cáo doanh thu** — Theo ngày/tháng/năm/tuỳ chỉnh
 - **Chỉ số hiệu suất** — Món bán chạy nhất, hiệu suất danh mục, thống kê thu ngân
@@ -49,6 +52,7 @@ API RESTful toàn diện cho việc quản lý quán cà phê, được xây d�
 - **Xuất CSV** — Tải bất kỳ báo cáo nào dưới dạng CSV (UTF-8 BOM cho Excel)
 
 ### Phase 4 — Quản Lý Nhân Sự & Ca Làm
+
 - **Mẫu ca làm** — Định nghĩa các khung giờ ca tái sử dụng
 - **Phân công lịch làm** — Phân công đơn lẻ hoặc hàng loạt (Thứ 2 - Thứ 6)
 - **Chấm công** — Tự check-in/out với phát hiện đi trễ tự động (ngưỡng 15 phút)
@@ -60,21 +64,21 @@ API RESTful toàn diện cho việc quản lý quán cà phê, được xây d�
 
 ## 🛠️ Công Nghệ Sử Dụng
 
-| Tầng             | Công nghệ                                          |
-| ---------------- | --------------------------------------------------- |
-| **Runtime**      | Node.js 22                                          |
-| **Ngôn ngữ**     | TypeScript 6 (strict mode)                          |
-| **Framework**    | Express 5                                           |
-| **Cơ sở dữ liệu** | MySQL 8 (qua Docker)                              |
-| **DB Driver**    | mysql2 (connection pool)                            |
-| **Validation**   | Zod 4                                               |
-| **Xác thực**     | JWT (jsonwebtoken) + bcryptjs                       |
-| **Tài liệu API** | Swagger UI (swagger-jsdoc + swagger-ui-express)    |
-| **Bảo mật**      | Helmet, CORS, express-rate-limit                    |
-| **Logging**      | Morgan                                              |
-| **Container**    | Docker + Docker Compose                             |
-| **Dev Tools**    | Nodemon, tsx                                        |
-| **Package Mgr**  | pnpm                                                |
+| Tầng                       | Công nghệ                                     |
+| --------------------------- | ----------------------------------------------- |
+| **Runtime**           | Node.js 22                                      |
+| **Ngôn ngữ**        | TypeScript 6 (strict mode)                      |
+| **Framework**         | Express 5                                       |
+| **Cơ sở dữ liệu** | MySQL 8 (qua Docker)                            |
+| **DB Driver**         | mysql2 (connection pool)                        |
+| **Validation**        | Zod 4                                           |
+| **Xác thực**        | JWT (jsonwebtoken) + bcryptjs                   |
+| **Tài liệu API**    | Swagger UI (swagger-jsdoc + swagger-ui-express) |
+| **Bảo mật**         | Helmet, CORS, express-rate-limit                |
+| **Logging**           | Morgan                                          |
+| **Container**         | Docker + Docker Compose                         |
+| **Dev Tools**         | Nodemon, tsx                                    |
+| **Package Mgr**       | pnpm                                            |
 
 ---
 
@@ -175,11 +179,11 @@ pnpm dev
 
 ### Tài Khoản Mặc Định (sau khi seed)
 
-| Vai trò    | Tên đăng nhập | Mật khẩu     |
-| ---------- | -------------- | ------------- |
-| **OWNER**  | admin          | admin123      |
-| **CASHIER**| cashier1       | cashier123    |
-| **BARISTA**| barista1       | barista123    |
+| Vai trò          | Tên đăng nhập | Mật khẩu |
+| ----------------- | ----------------- | ---------- |
+| **OWNER**   | admin             | admin123   |
+| **CASHIER** | cashier1          | cashier123 |
+| **BARISTA** | barista1          | barista123 |
 
 ---
 
@@ -215,24 +219,24 @@ JWT_REFRESH_EXPIRY=7d
 
 ### Bảng (16 bảng)
 
-| Bảng                       | Phase | Mô tả                                |
-| -------------------------- | ----- | ------------------------------------- |
-| `users`                    | 1     | Tài khoản người dùng với vai trò      |
-| `categories`               | 1     | Danh mục thực đơn                     |
-| `menu_items`               | 1     | Các món trong thực đơn                |
-| `toppings`                 | 1     | Các topping                           |
-| `menu_item_toppings`       | 1     | Nhiều-nhiều: món ↔ topping            |
-| `orders`                   | 1     | Đơn hàng với theo dõi trạng thái      |
-| `order_items`              | 1     | Các món trong đơn hàng                |
-| `order_item_toppings`      | 1     | Topping của món trong đơn             |
-| `payments`                 | 1     | Bản ghi thanh toán                    |
-| `ingredients`              | 2     | Nguyên liệu kho với ngưỡng cảnh báo  |
-| `menu_item_ingredients`    | 2     | Công thức: món → nguyên liệu         |
-| `topping_ingredients`      | 2     | Công thức: topping → nguyên liệu     |
-| `inventory_movements`      | 3     | Nhật ký biến động kho                 |
-| `shifts`                   | 4     | Mẫu ca làm việc                      |
-| `shift_assignments`        | 4     | Phân công ca: nhân viên ↔ ca          |
-| `attendance_logs`          | 4     | Bản ghi chấm công                    |
+| Bảng                     | Phase | Mô tả                                    |
+| ------------------------- | ----- | ------------------------------------------ |
+| `users`                 | 1     | Tài khoản người dùng với vai trò    |
+| `categories`            | 1     | Danh mục thực đơn                      |
+| `menu_items`            | 1     | Các món trong thực đơn                |
+| `toppings`              | 1     | Các topping                               |
+| `menu_item_toppings`    | 1     | Nhiều-nhiều: món ↔ topping             |
+| `orders`                | 1     | Đơn hàng với theo dõi trạng thái    |
+| `order_items`           | 1     | Các món trong đơn hàng                |
+| `order_item_toppings`   | 1     | Topping của món trong đơn              |
+| `payments`              | 1     | Bản ghi thanh toán                       |
+| `ingredients`           | 2     | Nguyên liệu kho với ngưỡng cảnh báo |
+| `menu_item_ingredients` | 2     | Công thức: món → nguyên liệu         |
+| `topping_ingredients`   | 2     | Công thức: topping → nguyên liệu      |
+| `inventory_movements`   | 3     | Nhật ký biến động kho                 |
+| `shifts`                | 4     | Mẫu ca làm việc                         |
+| `shift_assignments`     | 4     | Phân công ca: nhân viên ↔ ca          |
+| `attendance_logs`       | 4     | Bản ghi chấm công                       |
 
 ### Migration
 
@@ -258,118 +262,118 @@ Tất cả endpoint đều có tiền tố `/api/v1`.
 
 ### Xác thực (`/auth`) — 4 endpoint
 
-| Phương thức | Endpoint         | Quyền    | Mô tả                           |
-| ----------- | ---------------- | -------- | -------------------------------- |
-| POST        | `/auth/login`    | Công khai| Đăng nhập, trả về cặp JWT       |
-| POST        | `/auth/refresh`  | Công khai| Làm mới access token             |
-| POST        | `/auth/logout`   | Đã xác thực | Đăng xuất (huỷ phiên ngay lập tức) |
-| GET         | `/auth/me`       | Đã xác thực | Lấy thông tin người dùng hiện tại |
+| Phương thức | Endpoint          | Quyền          | Mô tả                                   |
+| -------------- | ----------------- | --------------- | ----------------------------------------- |
+| POST           | `/auth/login`   | Công khai      | Đăng nhập, trả về cặp JWT           |
+| POST           | `/auth/refresh` | Công khai      | Làm mới access token                    |
+| POST           | `/auth/logout`  | Đã xác thực | Đăng xuất (huỷ phiên ngay lập tức) |
+| GET            | `/auth/me`      | Đã xác thực | Lấy thông tin người dùng hiện tại  |
 
 ### Người dùng (`/users`) — 6 endpoint
 
-| Phương thức | Endpoint               | Quyền | Mô tả                    |
-| ----------- | ---------------------- | ----- | ------------------------- |
-| POST        | `/users`               | OWNER | Tạo người dùng mới       |
-| GET         | `/users`               | OWNER | Danh sách người dùng     |
-| GET         | `/users/:id`           | OWNER | Chi tiết người dùng      |
-| PUT         | `/users/:id`           | OWNER | Cập nhật người dùng      |
-| PATCH       | `/users/:id/active`    | OWNER | Bật/tắt trạng thái       |
-| PATCH       | `/users/:id/password`  | OWNER | Đặt lại mật khẩu         |
+| Phương thức | Endpoint                | Quyền | Mô tả                  |
+| -------------- | ----------------------- | ------ | ------------------------ |
+| POST           | `/users`              | OWNER  | Tạo người dùng mới  |
+| GET            | `/users`              | OWNER  | Danh sách người dùng |
+| GET            | `/users/:id`          | OWNER  | Chi tiết người dùng  |
+| PUT            | `/users/:id`          | OWNER  | Cập nhật người dùng |
+| PATCH          | `/users/:id/active`   | OWNER  | Bật/tắt trạng thái   |
+| PATCH          | `/users/:id/password` | OWNER  | Đặt lại mật khẩu    |
 
 ### Thực đơn (`/menu`) — 16 endpoint
 
-| Phương thức | Endpoint                            | Quyền         | Mô tả                         |
-| ----------- | ----------------------------------- | ------------- | ------------------------------ |
-| GET         | `/menu/categories`                  | Đã xác thực   | Danh sách danh mục             |
-| POST        | `/menu/categories`                  | OWNER         | Tạo danh mục                   |
-| PUT         | `/menu/categories/:id`              | OWNER         | Cập nhật danh mục              |
-| DELETE      | `/menu/categories/:id`              | OWNER         | Xoá danh mục                   |
-| GET         | `/menu/items`                       | Đã xác thực   | Danh sách món                  |
-| GET         | `/menu/items/:id`                   | Đã xác thực   | Chi tiết món                   |
-| POST        | `/menu/items`                       | OWNER         | Tạo món mới                    |
-| PUT         | `/menu/items/:id`                   | OWNER         | Cập nhật món                   |
-| PATCH       | `/menu/items/:id/availability`      | OWNER/BARISTA | Bật/tắt tình trạng còn hàng   |
-| GET         | `/menu/toppings`                    | Đã xác thực   | Danh sách topping              |
-| POST        | `/menu/toppings`                    | OWNER         | Tạo topping                    |
-| PUT         | `/menu/toppings/:id`                | OWNER         | Cập nhật topping               |
-| GET         | `/menu/items/:id/ingredients`       | OWNER         | Xem công thức món              |
-| PUT         | `/menu/items/:id/ingredients`       | OWNER         | Cập nhật công thức món         |
-| GET         | `/menu/toppings/:id/ingredients`    | OWNER         | Xem công thức topping          |
-| PUT         | `/menu/toppings/:id/ingredients`    | OWNER         | Cập nhật công thức topping     |
+| Phương thức | Endpoint                           | Quyền          | Mô tả                           |
+| -------------- | ---------------------------------- | --------------- | --------------------------------- |
+| GET            | `/menu/categories`               | Đã xác thực | Danh sách danh mục              |
+| POST           | `/menu/categories`               | OWNER           | Tạo danh mục                    |
+| PUT            | `/menu/categories/:id`           | OWNER           | Cập nhật danh mục              |
+| DELETE         | `/menu/categories/:id`           | OWNER           | Xoá danh mục                    |
+| GET            | `/menu/items`                    | Đã xác thực | Danh sách món                   |
+| GET            | `/menu/items/:id`                | Đã xác thực | Chi tiết món                    |
+| POST           | `/menu/items`                    | OWNER           | Tạo món mới                    |
+| PUT            | `/menu/items/:id`                | OWNER           | Cập nhật món                   |
+| PATCH          | `/menu/items/:id/availability`   | OWNER/BARISTA   | Bật/tắt tình trạng còn hàng |
+| GET            | `/menu/toppings`                 | Đã xác thực | Danh sách topping                |
+| POST           | `/menu/toppings`                 | OWNER           | Tạo topping                      |
+| PUT            | `/menu/toppings/:id`             | OWNER           | Cập nhật topping                |
+| GET            | `/menu/items/:id/ingredients`    | OWNER           | Xem công thức món              |
+| PUT            | `/menu/items/:id/ingredients`    | OWNER           | Cập nhật công thức món       |
+| GET            | `/menu/toppings/:id/ingredients` | OWNER           | Xem công thức topping           |
+| PUT            | `/menu/toppings/:id/ingredients` | OWNER           | Cập nhật công thức topping    |
 
 ### Đơn hàng (`/orders`) — 4 endpoint
 
-| Phương thức | Endpoint               | Quyền   | Mô tả                     |
-| ----------- | ---------------------- | ------- | -------------------------- |
-| POST        | `/orders`              | CASHIER | Tạo đơn hàng mới          |
-| GET         | `/orders`              | Đã xác thực | Danh sách đơn hàng (lọc) |
-| GET         | `/orders/:id`          | Đã xác thực | Chi tiết đơn hàng        |
-| PATCH       | `/orders/:id/status`   | BARISTA | Cập nhật trạng thái đơn   |
+| Phương thức | Endpoint               | Quyền          | Mô tả                       |
+| -------------- | ---------------------- | --------------- | ----------------------------- |
+| POST           | `/orders`            | CASHIER         | Tạo đơn hàng mới         |
+| GET            | `/orders`            | Đã xác thực | Danh sách đơn hàng (lọc) |
+| GET            | `/orders/:id`        | Đã xác thực | Chi tiết đơn hàng         |
+| PATCH          | `/orders/:id/status` | BARISTA         | Cập nhật trạng thái đơn |
 
 ### Thanh toán (`/payments`) — 2 endpoint
 
-| Phương thức | Endpoint               | Quyền         | Mô tả                                   |
-| ----------- | ---------------------- | ------------- | ---------------------------------------- |
-| POST        | `/payments`            | CASHIER       | Xử lý thanh toán (kích hoạt trừ kho)    |
-| GET         | `/payments/:orderId`   | CASHIER/OWNER | Xem chi tiết thanh toán                  |
+| Phương thức | Endpoint               | Quyền        | Mô tả                                    |
+| -------------- | ---------------------- | ------------- | ------------------------------------------ |
+| POST           | `/payments`          | CASHIER       | Xử lý thanh toán (kích hoạt trừ kho) |
+| GET            | `/payments/:orderId` | CASHIER/OWNER | Xem chi tiết thanh toán                  |
 
 ### Bếp (`/kitchen`) — 2 endpoint
 
-| Phương thức | Endpoint            | Quyền    | Mô tả                      |
-| ----------- | ------------------- | -------- | --------------------------- |
-| GET         | `/kitchen/queue`    | BARISTA  | Hàng đợi đơn trong bếp     |
-| GET         | `/kitchen/display`  | Công khai| Màn hình hiển thị bếp      |
+| Phương thức | Endpoint             | Quyền     | Mô tả                      |
+| -------------- | -------------------- | ---------- | ---------------------------- |
+| GET            | `/kitchen/queue`   | BARISTA    | Hàng đợi đơn trong bếp |
+| GET            | `/kitchen/display` | Công khai | Màn hình hiển thị bếp   |
 
 ### Kho nguyên liệu (`/inventory`) — 7 endpoint
 
-| Phương thức | Endpoint                            | Quyền | Mô tả                       |
-| ----------- | ----------------------------------- | ----- | ---------------------------- |
-| POST        | `/inventory/ingredients`            | OWNER | Thêm nguyên liệu mới        |
-| GET         | `/inventory/ingredients`            | OWNER | Danh sách nguyên liệu       |
-| GET         | `/inventory/ingredients/:id`        | OWNER | Chi tiết nguyên liệu        |
-| PUT         | `/inventory/ingredients/:id`        | OWNER | Cập nhật nguyên liệu        |
-| PATCH       | `/inventory/ingredients/:id/active` | OWNER | Bật/tắt nguyên liệu         |
-| PATCH       | `/inventory/ingredients/:id/stock`  | OWNER | Điều chỉnh tồn kho          |
-| GET         | `/inventory/alerts`                 | OWNER | Cảnh báo sắp hết hàng       |
+| Phương thức | Endpoint                              | Quyền | Mô tả                    |
+| -------------- | ------------------------------------- | ------ | -------------------------- |
+| POST           | `/inventory/ingredients`            | OWNER  | Thêm nguyên liệu mới   |
+| GET            | `/inventory/ingredients`            | OWNER  | Danh sách nguyên liệu   |
+| GET            | `/inventory/ingredients/:id`        | OWNER  | Chi tiết nguyên liệu    |
+| PUT            | `/inventory/ingredients/:id`        | OWNER  | Cập nhật nguyên liệu   |
+| PATCH          | `/inventory/ingredients/:id/active` | OWNER  | Bật/tắt nguyên liệu    |
+| PATCH          | `/inventory/ingredients/:id/stock`  | OWNER  | Điều chỉnh tồn kho     |
+| GET            | `/inventory/alerts`                 | OWNER  | Cảnh báo sắp hết hàng |
 
 ### Báo cáo (`/reports`) — 9 endpoint
 
-| Phương thức | Endpoint                         | Quyền | Mô tả                                  |
-| ----------- | -------------------------------- | ----- | --------------------------------------- |
-| GET         | `/reports/dashboard`             | OWNER | Tổng quan hôm nay                      |
-| GET         | `/reports/revenue/summary`       | OWNER | Doanh thu theo kỳ (ngày/tháng/năm)     |
-| GET         | `/reports/revenue/by-method`     | OWNER | Doanh thu theo phương thức thanh toán   |
-| GET         | `/reports/top-selling`           | OWNER | Xếp hạng món bán chạy                  |
-| GET         | `/reports/category-performance`  | OWNER | Doanh thu theo danh mục                |
-| GET         | `/reports/cashier-performance`   | OWNER | Đơn & doanh thu theo thu ngân          |
-| GET         | `/reports/inventory/summary`     | OWNER | Trạng thái tồn kho (OK/LOW/OUT)        |
-| GET         | `/reports/inventory/movements`   | OWNER | Lịch sử biến động kho (phân trang)     |
-| GET         | `/reports/export`                | OWNER | Xuất CSV cho bất kỳ báo cáo nào        |
+| Phương thức | Endpoint                          | Quyền | Mô tả                                   |
+| -------------- | --------------------------------- | ------ | ----------------------------------------- |
+| GET            | `/reports/dashboard`            | OWNER  | Tổng quan hôm nay                       |
+| GET            | `/reports/revenue/summary`      | OWNER  | Doanh thu theo kỳ (ngày/tháng/năm)    |
+| GET            | `/reports/revenue/by-method`    | OWNER  | Doanh thu theo phương thức thanh toán |
+| GET            | `/reports/top-selling`          | OWNER  | Xếp hạng món bán chạy                |
+| GET            | `/reports/category-performance` | OWNER  | Doanh thu theo danh mục                  |
+| GET            | `/reports/cashier-performance`  | OWNER  | Đơn & doanh thu theo thu ngân          |
+| GET            | `/reports/inventory/summary`    | OWNER  | Trạng thái tồn kho (OK/LOW/OUT)        |
+| GET            | `/reports/inventory/movements`  | OWNER  | Lịch sử biến động kho (phân trang)  |
+| GET            | `/reports/export`               | OWNER  | Xuất CSV cho bất kỳ báo cáo nào     |
 
 ### Ca làm việc (`/shifts`) — 7 endpoint
 
-| Phương thức | Endpoint                    | Quyền       | Mô tả                         |
-| ----------- | --------------------------- | ----------- | ------------------------------ |
-| GET         | `/shifts`                   | Đã xác thực | Danh sách ca làm               |
-| POST        | `/shifts`                   | OWNER       | Tạo mẫu ca làm                |
-| PUT         | `/shifts/:id`               | OWNER       | Cập nhật ca                    |
-| PATCH       | `/shifts/:id/active`        | OWNER       | Bật/tắt ca làm                |
-| GET         | `/shifts/my-schedule`       | Đã xác thực | Xem lịch làm của mình         |
-| GET         | `/shifts/assignments`       | OWNER       | Danh sách phân công            |
-| POST        | `/shifts/assignments`       | OWNER       | Tạo phân công (đơn/hàng loạt) |
-| PUT         | `/shifts/assignments/:id`   | OWNER       | Cập nhật phân công             |
-| DELETE      | `/shifts/assignments/:id`   | OWNER       | Xoá phân công                  |
+| Phương thức | Endpoint                    | Quyền          | Mô tả                              |
+| -------------- | --------------------------- | --------------- | ------------------------------------ |
+| GET            | `/shifts`                 | Đã xác thực | Danh sách ca làm                   |
+| POST           | `/shifts`                 | OWNER           | Tạo mẫu ca làm                    |
+| PUT            | `/shifts/:id`             | OWNER           | Cập nhật ca                        |
+| PATCH          | `/shifts/:id/active`      | OWNER           | Bật/tắt ca làm                    |
+| GET            | `/shifts/my-schedule`     | Đã xác thực | Xem lịch làm của mình            |
+| GET            | `/shifts/assignments`     | OWNER           | Danh sách phân công               |
+| POST           | `/shifts/assignments`     | OWNER           | Tạo phân công (đơn/hàng loạt) |
+| PUT            | `/shifts/assignments/:id` | OWNER           | Cập nhật phân công               |
+| DELETE         | `/shifts/assignments/:id` | OWNER           | Xoá phân công                     |
 
 ### Chấm công (`/attendance`) — 6 endpoint
 
-| Phương thức | Endpoint                  | Quyền       | Mô tả                            |
-| ----------- | ------------------------- | ----------- | --------------------------------- |
-| POST        | `/attendance/check-in`    | Đã xác thực | Tự check-in                       |
-| POST        | `/attendance/check-out`   | Đã xác thực | Tự check-out                      |
-| GET         | `/attendance/my-history`  | Đã xác thực | Lịch sử chấm công của mình       |
-| POST        | `/attendance/override`    | OWNER       | Ghi đè chấm công nhân viên       |
-| GET         | `/attendance`             | OWNER       | Tất cả bản ghi chấm công         |
-| GET         | `/attendance/summary`     | OWNER       | Tổng hợp chấm công theo nhân viên|
+| Phương thức | Endpoint                   | Quyền          | Mô tả                                 |
+| -------------- | -------------------------- | --------------- | --------------------------------------- |
+| POST           | `/attendance/check-in`   | Đã xác thực | Tự check-in                            |
+| POST           | `/attendance/check-out`  | Đã xác thực | Tự check-out                           |
+| GET            | `/attendance/my-history` | Đã xác thực | Lịch sử chấm công của mình        |
+| POST           | `/attendance/override`   | OWNER           | Ghi đè chấm công nhân viên        |
+| GET            | `/attendance`            | OWNER           | Tất cả bản ghi chấm công           |
+| GET            | `/attendance/summary`    | OWNER           | Tổng hợp chấm công theo nhân viên |
 
 ---
 
@@ -393,11 +397,11 @@ Tất cả endpoint đều có tiền tố `/api/v1`.
 
 ### RBAC (Phân Quyền Theo Vai Trò)
 
-| Vai trò     | Quyền hạn                                                       |
-| ----------- | ---------------------------------------------------------------- |
+| Vai trò          | Quyền hạn                                                                  |
+| ----------------- | ---------------------------------------------------------------------------- |
 | **OWNER**   | Toàn quyền: nhân viên, thực đơn, kho, báo cáo, ca làm, đơn hàng |
-| **CASHIER** | Tạo đơn hàng, thanh toán, xem thực đơn                          |
-| **BARISTA** | Cập nhật trạng thái đơn, bật/tắt món, hàng đợi bếp             |
+| **CASHIER** | Tạo đơn hàng, thanh toán, xem thực đơn                               |
+| **BARISTA** | Cập nhật trạng thái đơn, bật/tắt món, hàng đợi bếp              |
 
 ### Giới Hạn Tốc Độ (Rate Limiting)
 
@@ -408,18 +412,18 @@ Tất cả endpoint đều có tiền tố `/api/v1`.
 
 ## 🎯 Các Quyết Định Thiết Kế
 
-| Quyết định | Lý do |
-| ---------- | ----- |
-| **Trừ kho khi thanh toán** (không phải khi tạo đơn) | Luồng đơn giản hơn, không cần rollback khi huỷ đơn |
-| **Tồn kho có thể âm** | Chỉ cảnh báo — không bao giờ chặn giao dịch bán hàng thực tế |
-| **Tự động khoá phản ứng** (không dùng cron) | Kiểm tra mỗi lần thay đổi tồn kho, không có độ trễ |
-| **Mở khoá thông minh** | Chỉ khi TẤT CẢ nguyên liệu đều trên ngưỡng |
-| **Trừ kho linh hoạt** | Thanh toán luôn thành công; trừ kho được bọc try-catch |
-| **Kiểm tra phiên DB mỗi request** | Đăng xuất ngay lập tức, không bị trễ bởi thời hạn JWT |
-| **Máy trạng thái đơn hàng** | PENDING→PREPARING→READY→COMPLETED; chỉ huỷ từ PENDING/PREPARING |
-| **Ca xuyên đêm** | `end_time < start_time` tự động hiểu là ngày hôm sau |
-| **Ngưỡng đi trễ 15 phút** | Hằng số cố định cho theo dõi chấm công |
-| **CSV với UTF-8 BOM** | Tương thích Excel cho ký tự tiếng Việt |
+| Quyết định                                                    | Lý do                                                                   |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| **Trừ kho khi thanh toán** (không phải khi tạo đơn) | Luồng đơn giản hơn, không cần rollback khi huỷ đơn             |
+| **Tồn kho có thể âm**                                  | Chỉ cảnh báo — không bao giờ chặn giao dịch bán hàng thực tế |
+| **Tự động khoá phản ứng** (không dùng cron)        | Kiểm tra mỗi lần thay đổi tồn kho, không có độ trễ            |
+| **Mở khoá thông minh**                                  | Chỉ khi TẤT CẢ nguyên liệu đều trên ngưỡng                     |
+| **Trừ kho linh hoạt**                                    | Thanh toán luôn thành công; trừ kho được bọc try-catch          |
+| **Kiểm tra phiên DB mỗi request**                       | Đăng xuất ngay lập tức, không bị trễ bởi thời hạn JWT         |
+| **Máy trạng thái đơn hàng**                          | PENDING→PREPARING→READY→COMPLETED; chỉ huỷ từ PENDING/PREPARING    |
+| **Ca xuyên đêm**                                        | `end_time < start_time` tự động hiểu là ngày hôm sau            |
+| **Ngưỡng đi trễ 15 phút**                             | Hằng số cố định cho theo dõi chấm công                           |
+| **CSV với UTF-8 BOM**                                     | Tương thích Excel cho ký tự tiếng Việt                            |
 
 ---
 
@@ -476,14 +480,14 @@ back-end-coffee-shop-reborn/
 
 ## 📜 Lệnh Scripts
 
-| Lệnh             | Mô tả                                     |
-| ----------------- | ------------------------------------------ |
-| `pnpm dev`        | Khởi chạy dev server với hot reload        |
-| `pnpm build`      | Biên dịch TypeScript sang `dist/`          |
-| `pnpm start`      | Chạy bản build production                  |
-| `pnpm typecheck`  | Kiểm tra lỗi TypeScript (không build)      |
-| `pnpm migrate`    | Chạy migration cơ sở dữ liệu              |
-| `pnpm seed`       | Nạp dữ liệu mẫu vào database              |
+| Lệnh              | Mô tả                                  |
+| ------------------ | ---------------------------------------- |
+| `pnpm dev`       | Khởi chạy dev server với hot reload   |
+| `pnpm build`     | Biên dịch TypeScript sang `dist/`    |
+| `pnpm start`     | Chạy bản build production              |
+| `pnpm typecheck` | Kiểm tra lỗi TypeScript (không build) |
+| `pnpm migrate`   | Chạy migration cơ sở dữ liệu        |
+| `pnpm seed`      | Nạp dữ liệu mẫu vào database        |
 
 ---
 
@@ -519,10 +523,10 @@ Trả về trạng thái API và kết nối database.
 docker compose up -d
 ```
 
-| Dịch vụ           | Container          | Cổng  |
-| ------------------ | ------------------ | ----- |
-| MySQL 8            | `coffee-shop-db`   | 3306  |
-| Express API        | `coffee-shop-api`  | 3000  |
+| Dịch vụ   | Container           | Cổng |
+| ----------- | ------------------- | ----- |
+| MySQL 8     | `coffee-shop-db`  | 3306  |
+| Express API | `coffee-shop-api` | 3000  |
 
 ### Build lại sau khi thay đổi code
 
