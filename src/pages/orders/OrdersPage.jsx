@@ -105,7 +105,7 @@ const OrdersPage = () => {
 
   const filteredItems = allItems.filter(item => {
     const matchesCategory = selectedCategory === null || item.categoryId === selectedCategory;
-    const matchesSearch = searchQuery.trim() === '' || item.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = searchQuery.trim() === '' || item.name?.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -492,10 +492,10 @@ const OrdersPage = () => {
                   <div style={{ height: '100px', backgroundColor: '#e5dcd5', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
                     <img 
                       src={item.imageUrl || (
-                        item.name.toLowerCase().includes('cà phê') || item.name.toLowerCase().includes('bạc xỉu') ? 'https://images.unsplash.com/photo-1559525839-b184a4d698c7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' : 
-                        item.name.toLowerCase().includes('trà') ? 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' :
-                        item.name.toLowerCase().includes('sinh tố') || item.name.toLowerCase().includes('nước ép') ? 'https://images.unsplash.com/photo-1623512297893-6c701bcbf7e1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' :
-                        item.name.toLowerCase().includes('bánh') ? 'https://images.unsplash.com/photo-1579306194872-64d3b7bac4c2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' :
+                        item.name?.toLowerCase().includes('cà phê') || item.name?.toLowerCase().includes('bạc xỉu') ? 'https://images.unsplash.com/photo-1559525839-b184a4d698c7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' : 
+                        item.name?.toLowerCase().includes('trà') ? 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' :
+                        item.name?.toLowerCase().includes('sinh tố') || item.name?.toLowerCase().includes('nước ép') ? 'https://images.unsplash.com/photo-1623512297893-6c701bcbf7e1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' :
+                        item.name?.toLowerCase().includes('bánh') ? 'https://images.unsplash.com/photo-1579306194872-64d3b7bac4c2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' :
                         'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3'
                       )} 
                       alt={item.name} 
