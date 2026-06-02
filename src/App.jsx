@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/auth/LoginPage';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -14,6 +14,7 @@ import ReportPage from './pages/reports/ReportPage';
 import ShiftPage from './pages/users/ShiftPage';
 import AttendancePage from './pages/users/AttendancePage';
 import KitchenPage from './pages/barista/KitchenPage';
+import OrdersPage from './pages/orders/OrdersPage';
 function App() {
   return (
     <Router>
@@ -23,6 +24,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/reports" element={<ReportPage />} />
+            <Route path="/orders" element={<OrdersPage />} />
             <Route path="/menu/categories" element={<CategoryPage />} />
             <Route path="/menu/items" element={<MenuItemPage />} />
             <Route path="/menu/toppings" element={<ToppingPage />} />
