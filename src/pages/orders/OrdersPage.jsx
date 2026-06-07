@@ -228,12 +228,8 @@ const OrdersPage = () => {
       };
 
       await paymentApi.processPayment(paymentPayload);
-
-      try {
-        await orderApi.updateOrderStatus(orderId, 'PREPARING');
-      } catch (e) {
-        console.error(e);
-      }
+      
+      // Removed forced update to PREPARING so it goes to Barista PENDING queue
 
       setReceiptData({
         orderId: orderId,
@@ -284,11 +280,7 @@ const OrdersPage = () => {
 
       await paymentApi.processPayment(paymentPayload);
 
-      try {
-        await orderApi.updateOrderStatus(receiptData.orderId, 'PREPARING');
-      } catch (e) {
-        console.error(e);
-      }
+      // Removed forced update to PREPARING so it goes to Barista PENDING queue
 
       setIsPaymentModalOpen(false);
       setReceiptData(null);
@@ -300,11 +292,7 @@ const OrdersPage = () => {
       console.error(error);
       const isAlreadyPaid = error.response?.status === 409 || error.response?.data?.message === 'Order already paid';
       if (isAlreadyPaid) {
-        try {
-          await orderApi.updateOrderStatus(receiptData.orderId, 'PREPARING');
-        } catch (e) {
-          console.error(e);
-        }
+        // Wait, if it's already paid, we just log it. Do not force PREPARING.
         setIsPaymentModalOpen(false);
         setReceiptData(null);
         setTransactionRef('');

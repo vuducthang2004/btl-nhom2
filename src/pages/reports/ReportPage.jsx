@@ -9,7 +9,9 @@ const ReportPage = () => {
   const [filter, setFilter] = useState('month');
 
   useEffect(() => {
-    fetchTopSelling({ limit: 10 });
+    // Pass the correct period params. Here we default to current month for the report.
+    const currentMonth = new Date().toISOString().slice(0, 7); // e.g. "2026-06"
+    fetchTopSelling({ period: 'monthly', month: currentMonth, limit: 10 });
   }, [fetchTopSelling, filter]);
 
   const formatCurrency = (price) => {
@@ -18,7 +20,7 @@ const ReportPage = () => {
 
   const columns = [
     { header: 'Món ăn', render: (row) => <span style={{ fontWeight: 'bold' }}>{row.name}</span> },
-    { header: 'Đã bán', render: (row) => `${row.totalSold ?? row.total_sold ?? 0} cốc` },
+    { header: 'Đã bán', render: (row) => `${row.totalQuantity ?? row.total_quantity ?? 0} cốc` },
     { header: 'Doanh thu', render: (row) => <span style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>{formatCurrency(row.totalRevenue ?? row.total_revenue)}</span> }
   ];
 

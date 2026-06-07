@@ -14,7 +14,7 @@ export async function getActiveQueue() {
 
 export async function getReadyOrders() {
   const [rows] = await pool.execute<RowDataPacket[]>(
-    `SELECT o.queue_number, o.status, o.updated_at as ready_at
+    `SELECT o.id, o.queue_number, o.status, o.updated_at as ready_at
      FROM orders o
      WHERE o.status = 'READY'
      AND DATE(o.created_at) = CURDATE()

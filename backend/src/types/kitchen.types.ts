@@ -11,6 +11,7 @@ export interface QueueItem {
 }
 
 export interface DisplayItem {
+  id: number;
   queueNumber: number;
   status: string;
   readyAt: string;

@@ -36,6 +36,7 @@ function App() {
           </Route>
           <Route path="/barista/queue" element={<KitchenPage />} />
         </Route>
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </Router>
