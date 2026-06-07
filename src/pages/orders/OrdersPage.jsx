@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { menuApi } from '../../api/menuApi';
 import { orderApi } from '../../api/orderApi';
 import { paymentApi } from '../../api/paymentApi';
+import { attendanceApi } from '../../api/attendanceApi';
 import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import Input from '../../components/ui/Input';
@@ -39,6 +40,24 @@ const OrdersPage = () => {
 
   const [selectedOrderDetails, setSelectedOrderDetails] = useState(null);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+
+  const handleCheckIn = async () => {
+    try {
+      await attendanceApi.checkIn();
+      alert('Vào ca thành công!');
+    } catch (error) {
+      alert(error.response?.data?.message || 'Lỗi khi vào ca');
+    }
+  };
+
+  const handleCheckOut = async () => {
+    try {
+      await attendanceApi.checkOut();
+      alert('Kết thúc ca thành công!');
+    } catch (error) {
+      alert(error.response?.data?.message || 'Lỗi khi kết thúc ca');
+    }
+  };
 
   const loadMenuData = useCallback(async () => {
     try {
@@ -436,6 +455,18 @@ const OrdersPage = () => {
             </button>
           </div>
         </div>
+
+        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <Button variant="outline" style={{ borderColor: '#4caf50', color: '#4caf50', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px' }} onClick={handleCheckIn}>
+            <span style={{ display: 'inline-block', width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#4caf50' }}></span> VÀO CA
+          </Button>
+          <Button variant="outline" style={{ borderColor: '#f44336', color: '#f44336', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px' }} onClick={handleCheckOut}>
+            <span style={{ display: 'inline-block', width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#f44336' }}></span> KẾT THÚC
+          </Button>
+          <Button variant="outline" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px' }} onClick={() => window.location.reload()}>
+            <span style={{ color: '#2196f3', fontSize: '16px' }}>🔄</span> Cập nhật ngay
+          </Button>
+        </div>
       </div>
 
       {activeTab === 'pos' ? (
@@ -559,7 +590,7 @@ const OrdersPage = () => {
                     </div>
                     {item.toppings.length > 0 && (
                       <div style={{ fontSize: '12px', color: 'var(--color-text-muted)', paddingLeft: '8px' }}>
-                        + Topping: {item.toppings.map(t => `${t.name} (${formatCurrency(t.price)})`).join(', ')}
+                        + Topping: {item.toppings.map(t => `${t.name || t.toppingName} (${formatCurrency(t.price ?? t.toppingPrice ?? 0)})`).join(', ')}
                       </div>
                     )}
                     {item.notes && (
@@ -853,7 +884,7 @@ const OrdersPage = () => {
                   </div>
                   {item.toppings?.length > 0 && (
                     <div style={{ paddingLeft: '12px', fontSize: '11px', color: '#666' }}>
-                      + Topping: {item.toppings.map(t => t.name).join(', ')}
+                      + Topping: {item.toppings.map(t => t.name || t.toppingName).join(', ')}
                     </div>
                   )}
                   {item.notes && (
@@ -921,7 +952,7 @@ const OrdersPage = () => {
                     </div>
                     {item.toppings && item.toppings.length > 0 && (
                       <div style={{ fontSize: '12px', color: 'var(--color-text-muted)', paddingLeft: '8px' }}>
-                        + Topping: {item.toppings.map(t => `${t.name} (+${formatCurrency(t.price)})`).join(', ')}
+                        + Topping: {item.toppings.map(t => `${t.name || t.toppingName} (+${formatCurrency(t.price ?? t.toppingPrice ?? 0)})`).join(', ')}
                       </div>
                     )}
                     {item.notes && (
