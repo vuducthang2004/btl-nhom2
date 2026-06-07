@@ -9,7 +9,7 @@ export async function getDashboardData(today: string) {
   const [orderStats] = await pool.execute<RowDataPacket[]>(
     `SELECT
        COUNT(*) as total_orders,
-       SUM(CASE WHEN o.status = 'COMPLETED' THEN 1 ELSE 0 END) as completed_orders,
+       SUM(CASE WHEN o.status IN ('READY', 'COMPLETED') THEN 1 ELSE 0 END) as completed_orders,
        SUM(CASE WHEN o.status = 'CANCELLED' THEN 1 ELSE 0 END) as cancelled_orders,
        COALESCE(SUM(CASE WHEN p.status = 'SUCCESS' THEN p.amount ELSE 0 END), 0) as total_revenue
      FROM orders o

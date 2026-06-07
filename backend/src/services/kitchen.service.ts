@@ -47,6 +47,7 @@ export async function getQueue(): Promise<QueueItem[]> {
 export async function getDisplay(): Promise<DisplayItem[]> {
   const rows = await kitchenRepo.getReadyOrders();
   return rows.map((r: any) => ({
+    id: r.id,
     queueNumber: r.queue_number,
     status: r.status,
     readyAt: r.ready_at,

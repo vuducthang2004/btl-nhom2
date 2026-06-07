@@ -210,9 +210,10 @@ export async function deductStockForOrder(orderId: number): Promise<void> {
           [deductAmount, recipe.ingredient_id]
         );
         try {
-          await inventoryRepo.insertMovement(
-            recipe.ingredient_id, 'DEDUCT_ORDER', -deductAmount,
-            stockBefore, stockBefore - deductAmount, orderId
+          await connection.execute(
+            `INSERT INTO inventory_movements (ingredient_id, change_type, quantity_change, stock_before, stock_after, reference_id, note)
+             VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            [recipe.ingredient_id, 'DEDUCT_ORDER', -deductAmount, stockBefore, stockBefore - deductAmount, orderId, null]
           );
         } catch (err) {
           console.warn(`⚠️ Failed to record deduct movement:`, err);
@@ -236,9 +237,10 @@ export async function deductStockForOrder(orderId: number): Promise<void> {
             [deductAmount, recipe.ingredient_id]
           );
           try {
-            await inventoryRepo.insertMovement(
-              recipe.ingredient_id, 'DEDUCT_ORDER', -deductAmount,
-              stockBefore, stockBefore - deductAmount, orderId
+            await connection.execute(
+              `INSERT INTO inventory_movements (ingredient_id, change_type, quantity_change, stock_before, stock_after, reference_id, note)
+               VALUES (?, ?, ?, ?, ?, ?, ?)`,
+              [recipe.ingredient_id, 'DEDUCT_ORDER', -deductAmount, stockBefore, stockBefore - deductAmount, orderId, null]
             );
           } catch (err) {
             console.warn(`⚠️ Failed to record deduct movement:`, err);

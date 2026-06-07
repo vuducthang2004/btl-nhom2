@@ -147,9 +147,17 @@ const KitchenPage = () => {
                 boxShadow: '0 4px 12px rgba(0,0,0,0.1)', borderLeft: '6px solid #4caf50'
               }}>
                 <h3 style={{ margin: 0, fontSize: '24px', color: '#333' }}>#{o.queueNumber ?? o.queue_number}</h3>
-                <span style={{ fontSize: '12px', color: '#666' }}>
-                  Xong lúc: {new Date(o.readyAt ?? o.ready_at).toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'})}
-                </span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '12px', color: '#666' }}>
+                    Xong lúc: {new Date(o.readyAt ?? o.ready_at).toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'})}
+                  </span>
+                  <Button 
+                    style={{ padding: '6px 12px', fontSize: '12px', backgroundColor: '#2196f3', borderColor: '#2196f3' }}
+                    onClick={() => handleStatusChange(o.id, 'COMPLETED')}
+                  >
+                    👋 ĐÃ GIAO
+                  </Button>
+                </div>
               </div>
             ))}
             {readyOrders.length === 0 && <p className="text-muted">Chưa có đơn hoàn thành.</p>}

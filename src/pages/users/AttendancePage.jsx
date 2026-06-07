@@ -132,7 +132,7 @@ const AttendancePage = () => {
         {loadingLogs ? (
           <div style={{ padding: '40px', textAlign: 'center' }}>Đang tải lịch sử...</div>
         ) : (
-          <Table columns={logColumns} data={Array.isArray(logs) ? logs : []} emptyMessage="Chưa có bản ghi chấm công nào." />
+          <Table columns={logColumns} data={Array.isArray(logs?.data) ? logs.data : (Array.isArray(logs) ? logs : [])} emptyMessage="Chưa có bản ghi chấm công nào." />
         )}
       </Card>
 

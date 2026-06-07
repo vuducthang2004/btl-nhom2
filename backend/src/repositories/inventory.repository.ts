@@ -206,9 +206,12 @@ export async function insertMovement(
   stockBefore: number,
   stockAfter: number,
   referenceId?: number | null,
-  note?: string | null
+  note?: string | null,
+  connection?: any
 ): Promise<void> {
-  await pool.execute(
+  const db = connection || pool;
+  console.log(`[DEBUG] insertMovement: db === pool? ${db === pool}, connection passed? ${!!connection}`);
+  await db.execute(
     `INSERT INTO inventory_movements (ingredient_id, change_type, quantity_change, stock_before, stock_after, reference_id, note)
      VALUES (?, ?, ?, ?, ?, ?, ?)`,
     [ingredientId, changeType, quantityChange, stockBefore, stockAfter, referenceId ?? null, note ?? null]

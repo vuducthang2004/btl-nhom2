@@ -82,7 +82,7 @@ const MainLayout = () => {
         {user.role === 'OWNER' && (
           <MenuItem 
             icon="📊" 
-            label="Bảng điều khiển" 
+            label="Tổng quan hôm nay" 
             active={isActive('/dashboard')} 
             onClick={() => navigate('/dashboard')} 
           />
